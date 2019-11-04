@@ -1,0 +1,63 @@
+﻿@model NikuHotel.ViewModel.RoomView
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+
+
+
+
+<section>
+
+
+    <div class="row">
+        <div class="col-md-12 col-md-offset-8">
+            <h2 class="text-center text-dark">Create Room</h2><br>
+            <div class="table-bordered bg-dark">
+                <br>
+              
+                <div class="col-md-8">
+                    <form asp-action="Create" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label  asp-for="Category" class="control-label text-white"></label>
+                            <input asp-for="Category" class="form-control" />
+                            <span asp-validation-for="Category" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Number" class="control-label text-white"></label>
+                            <input asp-for="Number" class="form-control" />
+                            <span asp-validation-for="Number" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Specification" class="control-label text-white"></label>
+                            <input asp-for="Specification" class="form-control" />
+                            <span asp-validation-for="Specification" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Price" class="control-label text-white"></label>
+                            <input asp-for="Price" class="form-control" />
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="RoomImage" class="control-label text-white"></label>
+                            <input asp-for="RoomImage" type="file" class="form-control" />
+                            <span asp-validation-for="RoomImage" class="text-danger"></span>
+                        </div>
+                        <div class="">
+                            <input class=" btn btn-danger btn-toolbar form-inline" type="submit" value="Create"  /><br>
+                           
+                        </div>
+                    </form>
+                    
+                </div>
+                <div class="col-md-12">
+                        <a class=" btn bg-white form-inline" asp-action="Index">Backto</a>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>

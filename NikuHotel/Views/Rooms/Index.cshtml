@@ -1,0 +1,78 @@
+﻿@model IEnumerable<NikuHotel.Models.Room>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<div class="row">
+
+    <div class="col-md-12">
+        <h2 class="text-center text-dark">Room Index</h2><br><br>
+      
+        <div class="table-bordered bg-fixed bg-dark">
+            <br><br>
+                <div class="col-md-12">
+                    <table class="table table-responsive table-hover">
+                        <thead class=" bg-danger text-white">
+                            <tr class="text-white">
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Category)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Number)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Specification)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Price)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.RoomImage)
+                                </th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr class="text-white">
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Category)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Number)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Specification)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    </td>
+                                    <td>
+                                        @*@Html.DisplayFor(modelItem => item.RoomImage)*@
+
+                                        @{
+                                            var b64 = Convert.ToBase64String(item.RoomImage);
+                                            var imgsrc = String.Format("data:image/jpg; base64,{0}", b64);
+
+                                        }
+                                        <img src="@imgsrc" alt="No Image" style="width:90px" />
+
+                                    </td>
+                                    <td>
+                                        <a class="text-white" asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                                        <a class="text-white" asp-action="Details" asp-route-id="@item.id">Details</a> |
+                                        <a asp-action="Delete" class="text-white" asp-route-id="@item.id">Delete</a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                    <br><div class="col-md-3"><a class="btn btn-outline-primary btn-toolbar " asp-action="Create">Create New</a></div><br><br>
+                </div>
+        </div>
+    </div>
+</div>

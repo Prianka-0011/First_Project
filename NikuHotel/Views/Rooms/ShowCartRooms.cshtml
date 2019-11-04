@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "ShowCartRooms";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>ShowCartRooms</h2>
+
+@foreach (var item in ViewBag.list)
+{
+
+    
+    <p class="price-from">From @item.Price/night</p>
+    <!-- Rooms Text -->
+    <div class="rooms-text">
+        @{ 
+            var b64 = Convert.ToBase64String(item.RoomImage);
+            var imgsrc = String.Format("data:image/jpg; base64,{0}", b64);
+        }
+        <img src="@imgsrc" alt="No Image" style="width:150px;height:150px;" />
+        <div class="line"></div>
+        <h4>@item.Category</h4>
+
+        <p>@item.Number</p>
+        <p>@item.Specification</p>
+        
+    </div>
+
+}

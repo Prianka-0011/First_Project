@@ -1,0 +1,109 @@
+﻿@model IEnumerable<NikuHotel.ViewModel.ItemofRoom>
+@{
+    ViewData["Title"] = "FinalReport";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    //var ob = ViewBag.cartroomsList;
+
+}
+
+<h2>FinalReport</h2>
+
+<section class="pool-area section-padding-100 bg-img bg-fixed" style="background-image: url(/Content/Customer/img/bg-img/bg-7.jpg);">
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-12 col-lg-7">
+                <div class="pool-content text-center wow fadeInUp" data-wow-delay="300ms">
+                    <div class="section-heading text-center white">
+                        <div class="line-"></div>
+                        <h2 class="text-warning">Invoice</h2>
+                    </div>
+                    <div class="row">
+                        <div id="Print" class="col-md-10 col-md-offset-4">
+
+                            <section>
+                                @if (Model != null)
+                                {
+                                    <h1 class="btn-outline-danger btn text-white">@ViewBag.customerName</h1>
+                                    <table class="table-bordered table">
+                                        <tr class="bg-danger text-white">
+
+                                            <td class="text-white">Payment Date</td>
+                                            <td class="text-white">Payment Method</td>
+                                        </tr>
+
+                                        <tr>
+
+                                            <td class="text-white">@ViewBag.paymentdate</td>
+
+                                            <td class="text-white"> @ViewBag.method</td>
+
+                                        </tr>
+
+                                        <tr class="bg-danger text-white">
+
+                                            <td class="text-white">Room Number</td>
+                                            <td class="text-white">Room Price</td>
+                                        </tr>
+                                        @foreach (var item in Model)
+                                        {
+
+
+                                            <tr>
+                                                <td class="text-white">@item.Room.Number</td>
+                                                <td class="text-white"> @item.Room.Price</td>
+
+                                            </tr>
+                                        }
+                                        <tr class="bg-danger text-white">
+
+                                                <td class="text-white">CheackIn Date</td>
+                                                <td class="text-white">CheackOut Date</td>
+
+                                            </tr>
+
+                                            <tr>
+
+                                                <td class="text-white">@ViewBag.checkIn</td>
+                                                <td class="text-white"> @ViewBag.checkOut</td>
+
+                                            </tr>
+
+                                    </table>
+
+                                    <p class="text-white btn btn-outline-danger">
+                                        Total Amount : @ViewBag.amount
+                                    </p>
+
+                                }
+                            </section>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-10">
+
+
+                            <button id="Report" class="btn btn-success" onclick="printdiv('Print');">Report</button>
+                        </div>
+                    </div>
+
+
+                    @section Scripts{
+                        @await Html.PartialAsync("_ValidationScriptsPartial")
+                        <script language="Javascript">
+                            function printdiv(printpage) {
+                                var newstr = document.all.item(printpage).innerHTML;
+                                var oldstr = document.body.innerHTML;
+                                document.body.innerHTML = newstr;
+                                window.print();
+                                document.body.innerHTML = oldstr;
+                                return false;
+                            }
+                        </script>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "CreateRole";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<section>
+
+
+    <div class="row">
+        <div class="col-md-12 col-md-offset-8">
+            <h2 class="text-center text-primary">Create Role</h2>
+            <div class="table-bordered bg-fixed bg-dark">
+                <br>
+                <div class="col-md-4"><div class="alert height-800 border-danger "><span  class="text-center text-primary"> @ViewBag.msg</span></div></div>
+
+
+                <div class="col-md-8">
+                    <form asp-action="CreateRole" asp-controller="Account" method="post">
+                        <label class="text-white">Role Name</label>
+                        <input type="text" name="RoleName" value="" class="form-control" /><br>
+                        <button type="submit" class="btn btn-danger btn-block  text-center">Create Role</button><br><br>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#msg").fadeOut(5000);
+        });
+    </script>
+}

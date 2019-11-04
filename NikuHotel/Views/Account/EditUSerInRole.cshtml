@@ -1,0 +1,46 @@
+﻿@model List<NikuHotel.ViewModel.UserRoleViewModel>
+
+
+@{
+    ViewData["Title"] = "EditUSerInRole";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+    var RoleId = ViewBag.Id;
+}
+
+
+
+
+<div class="row">
+       
+    <div class="col-md-12">
+        <h1>Add Or Remove User from this role</h1><br><br>
+        <div class="table-bordered bg-fixed bg-dark">
+            <br><br>
+            <div class="col-md-8">
+                <form method="post">
+                    <div class="card bg-danger text-white">
+                        <div class="card-header">
+
+                        </div>
+                        <div class="card-body">
+                            @for (int i = 0; i < Model.Count; i++)
+                            {
+                                <div class="form-check m-1">
+                                    <input type="hidden" asp-for="@Model[i].UserId" />
+                                    <input type="hidden" asp-for="@Model[i].UserName" />
+                                    <input asp-for="@Model[i].IsSelected" class="form-check-input" />
+
+                                    <label class="form-check-label">  @Model[i].UserName</label>
+                                </div>
+                            }
+                        </div>
+                        <div class="card-footer">
+                            <input type="submit" class="btn btn-dark" value="Update" />
+
+                        </div>
+                    </div>
+                </form><br><br>
+            </div>
+        </div>
+    </div>
+    </div>

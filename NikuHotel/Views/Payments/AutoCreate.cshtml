@@ -1,0 +1,64 @@
+﻿@model NikuHotel.ViewModel.FinalPayment
+@{
+    ViewData["Title"] = "AutoCreate";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+    DateTime systemDate = System.DateTime.Today;
+}
+
+
+
+
+<section class="pool-area section-padding-100 bg-img bg-fixed" style="background-image: url(/Content/Customer/img/bg-img/bg-3.jpg);">
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-12 col-lg-7">
+                <div class="pool-content text-center wow fadeInUp" data-wow-delay="300ms">
+                    <div class="section-heading text-center white">
+                        <div class="line-"></div>
+                        <h2 class="text-primary">Payment Here</h2>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-10 col-md-offset-4">
+                            <section>
+                                <form asp-action="AutoCreate" asp-controller="Payments">
+                                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <p asp-for="PaymentDate" class="text-left text-white">PaymentDate</p>
+                                    <div class="form-group">
+
+                                        <input asp-for="PaymentDate" type="datetime" readonly class="form-control" value="@systemDate" />
+                                        <span asp-validation-for="PaymentDate" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <p asp-for="Amount" class="text-left text-white">Amount</p>
+                                        <input asp-for="Amount" class="form-control" readonly value="@ViewBag.totalamount" />
+                                        <span asp-validation-for="Amount" class="text-danger"></span>
+                                    </div>
+                                    <div class="form-group">
+                                        <p asp-for="Method" class="text-left text-white">Method</p>
+
+                                        <select asp-for="Method" class="form-control">
+                                            <option value="MusterCard">MusterCard</option>
+                                            <option value="VishaCard">VishaCard</option>
+                                            <option value="Bkash">Mobile Banking</option>
+                                        </select>
+                                        <span asp-validation-for="Method" class="text-danger"></span>
+                                    </div>
+
+
+                                    <div class="form-group">
+                                        <input type="submit" value="Payment" class="btn btn-danger" />
+                                    </div>
+                                </form>
+                            </section>
+                        </div>
+                       
+                    </div>
+
+                    @section Scripts {
+                        @await Html.PartialAsync("_ValidationScriptsPartial")
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

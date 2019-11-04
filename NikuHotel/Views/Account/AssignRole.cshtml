@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewData["Title"] = "AssignRole";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+<section>
+
+
+    <div class="row">
+        <div class="col-md-12 col-md-offset-8">
+            <h2 class="text-center text-dark">AssignRole</h2><br>
+            <div class="table-bordered bg-fixed bg-dark"><br>
+                <div class="col-md-4">
+                <div class="alert height-800 border-danger "><p  class="text-center text-primary"> @ViewBag.msg</p></div></div>
+
+
+
+                <div class="col-md-8">
+                    <form asp-controller="Account" asp-action="AssignRole" method="post" class="border-dark">
+                        <label class="text-white">User List</label>
+                        <select name="appuser" class="form-control">
+                            <option value="">-- Select User --</option>
+                            @foreach (var item in ViewBag.userlist)
+                            {
+                                <option value="@item.Email">@item.Email</option>
+                            }
+                        </select>
+                        <label class="text-white">Role List</label>
+                        <select name="approle" class="form-control">
+                            <option value="">-- Select Role --</option>
+                            @foreach (var item in ViewBag.rolelist)
+                            {
+                                <option value="@item.NormalizedName">@item.NormalizedName</option>
+                            }
+                        </select><br />
+                        <button class=" btn btn-info " type="submit">Assign Role</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#msg").fadeOut(5000);
+        });
+    </script>
+}

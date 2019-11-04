@@ -1,0 +1,112 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewData["Title"] - Hotel</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="~/Content/Admin/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="~/Content/Admin/css/simple-sidebar.css" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div class="d-flex " id="wrapper">
+
+        <!-- Sidebar -->
+        <div class="bg-dark text-white border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading bg-danger text-white">
+                <i class="fas fa-menorah"></i> HMS
+            </div>
+            <div class="list-group list-group-flush bg-dark">
+                <div class="dropdown">
+                    <a class=" dropdown-toggle list-group-item list-group-item-action bg-dark text-white" id="menu1" data-toggle="dropdown">
+                        <i class="fas fa-user-tag"></i>
+                        Role
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                        <li><a href="@Url.Action("CreateRole","Account")" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-users"></i>Create Role</a></li>
+                        <li><a href="@Url.Action("AssignRole","Account")" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-user-tag"></i>Assign Roles</a></li>
+
+                    </ul>
+                </div>
+                    <div class="dropdown">
+                        <a class=" dropdown-toggle list-group-item list-group-item-action bg-dark text-white" id="menu2" data-toggle="dropdown">
+                            <i class="fas fa-tasks"></i>
+                            Manage
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="menu2">
+                            <li><a href="@Url.Action("RolesIndex","Account")" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-user-tag"></i>Role</a></li>
+                            <li><a href="@Url.Action("RegisteredUserIndex","Account")" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-user-tag"></i>User </a></li>
+                            <li><a href="@Url.Action("Index","Customers")" class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-user-tag"></i>Customer</a></li>
+
+                        </ul>
+                    </div>
+                    <a href="@Url.Action("Index","Rooms") " class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-hotel"></i> Room</a>
+                    <a href="@Url.Action("Index","Bookings") " class="list-group-item list-group-item-action bg-dark text-white"><i class="fas fa-hotel"></i> Booking Index</a>
+                </div>
+            </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-danger border-bottom  ">
+                <button class="btn btn-light" id="menu-toggle"><i class="fas fa-bars"></i></button>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+
+
+                    <i class="fas fa-sign-out-alt"></i>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        
+                        <li class="nav-item">
+                            @await Html.PartialAsync("_LoginPartial")
+                        </li>
+
+
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container col-md-8 col-md-offset-4">
+                
+                    @RenderBody()
+               
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+    </div>
+
+    <!-- /#wrapper -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="~/Content/Admin/vendor/jquery/jquery.min.js"></script>
+    <script src="~/Content/Admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/bccc7b239b.js" crossorigin="anonymous"></script>
+
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>

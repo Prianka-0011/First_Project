@@ -1,0 +1,54 @@
+﻿@model NikuHotel.ViewModel.EditRoleViewModel
+
+@{
+    ViewData["Title"] = "EditRole";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+
+
+<div class="row">
+    <div class="col-md-12 col-md-offset-8">
+        <h2 class="text-primary text-center ">EditRole</h2>
+        <div class="table-bordered bg-fixed bg-dark">
+            <form method="post" asp-action="EditRole">
+
+                <div class="col-md-8">
+                    <label class="text-white" asp-for="Id"></label>
+                    <input asp-for="Id" readonly class="form-control" />
+                    <label class="text-white" asp-for="RoleName"></label>
+                    <input asp-for="RoleName" class="form-control" />
+                    <span asp-validation-for="RoleName" class="text-warning"></span>
+                    <br>
+                    <button type="submit" class="btn btn-info text-white">Update</button>
+                    <a class="btn btn-danger text-white" asp-action="RolesIndex" asp-controller="Account">Cancel</a>
+
+                </div>
+                <div asp-validation-summary="All"></div>
+
+                <div class="col-md-6 pull-right bg-danger ">
+
+                    <p class="text-white">User In this role</p>
+                    <div>
+                        @if (Model.Users.Any())
+                        {
+                            foreach (var user in Model.Users)
+                            {
+                                <p class="title text-white">@user</p>
+                            }
+                            <br>
+                        }
+                        else
+                        {
+                            <h5>None at the moment</h5>
+                        }
+                        <a asp-action="EditUSerInRole" asp-controller="Account" asp-route-Id="@Model.Id" class="btn btn-dark">Add Or Remove Users</a><br><br>
+                    </div>
+                  
+                </div>
+
+            </form><br>
+        </div>
+
+    </div>
+</div>
