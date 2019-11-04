@@ -40,8 +40,6 @@ namespace NikuHotel.Controllers
             var room = _context.Room.FirstOrDefault(r => r.id == id);
             var totalqnty = 0;
             cartroom = HttpContext.Session.GetObject<List<ItemofRoom>>("cart");
-           
-
             if (room != null)
             {
                 if (cartroom != null)
