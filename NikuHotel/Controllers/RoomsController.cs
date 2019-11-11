@@ -194,11 +194,18 @@ namespace NikuHotel.Controllers
             }
 
             var room = await _context.Room.SingleOrDefaultAsync(m => m.id == id);
+            RoomView roomView = new RoomView();
+           
             if (room == null)
             {
                 return NotFound();
             }
-            return View(room);
+            roomView.id = room.id;
+            roomView.Category = room.Category;
+            roomView.Number = room.Number;
+            roomView.Specification = room.Specification;
+            roomView.Price = room.Price;
+            return View(roomView);
         }
         [Authorize(Roles = "Admin")]
         // POST: Rooms/Edit/5
@@ -206,15 +213,27 @@ namespace NikuHotel.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("id,Category,Number,Specification,Price,RoomImage")] Room room)
+        public async Task<IActionResult> Edit(int id, [Bind("id,Category,Number,Specification,Price,RoomImage")] RoomView roomView)
         {
-            if (id != room.id)
+            if (id != roomView.id)
             {
                 return NotFound();
             }
 
             if (ModelState.IsValid)
             {
+                Room room = new Room();
+                room.id = roomView.id;
+                room.Category = roomView.Category;
+                room.Number = roomView.Number;
+                room.Specification = roomView.Specification;
+                room.Price = roomView.Price;
+                using (var ms = new MemoryStream())
+                {
+                    await roomView.RoomImage.CopyToAsync(ms);
+                    room.RoomImage = ms.ToArray();
+                }
+
                 try
                 {
                     _context.Update(room);
@@ -233,7 +252,7 @@ namespace NikuHotel.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(room);
+            return View(roomView);
         }
         [Authorize(Roles = "Admin")]
         // GET: Rooms/Delete/5

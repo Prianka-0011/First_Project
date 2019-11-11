@@ -540,6 +540,7 @@ namespace NikuHotel.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation("User logged out.");
+            HttpContext.Session.SetObject("cart", null);
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 

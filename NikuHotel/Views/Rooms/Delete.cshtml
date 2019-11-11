@@ -11,42 +11,70 @@
 <div>
     <h4>Room</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Category)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Number)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Number)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Specification)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Specification)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.RoomImage)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.RoomImage)
-        </dd>
-    </dl>
-    
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="id" />
-        <input type="submit" value="Delete" class="btn btn-default" /> |
-        <a asp-action="Index">Back to List</a>
-    </form>
-</div>
+    <section>
+
+
+        <div class="row">
+            <div class="col-md-12 col-md-offset-8">
+                <h2 class="text-center text-dark">Create Room</h2><br>
+                <div class="table-bordered bg-dark">
+                    <br>
+
+                    <div class="col-md-8">
+                        <dl class="dl-horizontal text-white">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Category)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Category)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Number)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Number)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Specification)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Specification)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Price)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Price)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.RoomImage)
+                            </dt>
+                            <dd>
+
+                                @{
+                                    var b64 = Convert.ToBase64String(Model.RoomImage);
+                                    var imgsrc = String.Format("data:image/jpg; base64,{0}", b64);
+
+                                }
+                                <img src="@imgsrc" alt="No Image" style="width:90px" />
+                            </dd>
+                        </dl>
+
+
+                    </div>
+                    <div class="col-md-12">
+
+                        <form asp-action="Delete">
+                            <input type="hidden" asp-for="id" />
+                            <input type="submit" value="Delete" class="btn btn-danger" /> |
+                            <a class="btn btn-warning" asp-action="Index">Back to List</a>
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+            <br> <br> <br>
+        </div>
+    </section>
